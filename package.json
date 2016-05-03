@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An Express middleware to validate the data coming into your NodeJS API.",
   "main": "index.js",
+  "engines" : {
+    "node" : ">= 4.0.0"
+    },
   "scripts": {
     "start": "node index.js",
     "test": "NODE_ENV=test mocha --recursive test"
