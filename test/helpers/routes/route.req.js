@@ -34,6 +34,17 @@ module.exports = {
                 errorMessage: '%@_not_divisble_by_2'
             }
         },
+        ids: {
+            isArray: {
+                notEmpty: true,
+                content: {
+                    isInt: {
+                        errorMessage: '%@_must_be_array_of_int'
+                    }
+                },
+                errorMessage: '%@_must_be_array'
+            }
+        },
         // Should check headers only
         _headers: {
             'x-auth': {

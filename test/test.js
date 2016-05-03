@@ -15,18 +15,6 @@ describe('Testing request parameters', function() {
     });
   });
 
-  it('Required param included but empty - Basic message', function(done) {
-    request(app)
-    .get(uri)
-    .send({
-      firstName: ''
-    })
-    .expect(400, done)
-    .expect({
-      error: 'bad_request'
-    });
-  });
-
   it('Param not alpha as it must be - Basic message', function(done) {
     request(app)
     .get(uri)
@@ -48,19 +36,6 @@ describe('Testing request parameters', function() {
     .expect(400, done)
     .expect({
       error: 'lastName_is_required'
-    });
-  });
-
-  it('Required param included but empty - Custom message', function(done) {
-    request(app)
-    .get(uri)
-    .send({
-      firstName: 'John',
-      lastName: ''
-    })
-    .expect(400, done)
-    .expect({
-      error: 'lastName_is_empty'
     });
   });
 
@@ -205,7 +180,75 @@ describe('Testing scopes', function() {
 });
 
 describe('Testing personal validators', function() {
+  it('Testing notEmpty feature - Basic message', function(done) {
+    request(app)
+    .get(uri)
+    .send({
+      firstName: ''
+    })
+    .expect(400, done)
+    .expect({
+      error: 'bad_request'
+    });
+  });
 
+  it('Testing notEmpty feature - Custom message', function(done) {
+    request(app)
+    .get(uri)
+    .send({
+      firstName: 'John',
+      lastName: ''
+    })
+    .expect(400, done)
+    .expect({
+      error: 'lastName_is_empty'
+    });
+  });
+
+  it('Param is not array as it must be', function(done) {
+    request(app)
+    .get(uri)
+    .send({
+      firstName: 'John',
+      lastName: 'Doe',
+      ids: 'foobar'
+    })
+    .expect(400, done)
+    .expect({
+      error: 'ids_must_be_array'
+    });
+  });
+
+  it('Testing notEmpty feature on array', function(done) {
+    request(app)
+    .get(uri)
+    .send({
+      firstName: 'John',
+      lastName: 'Doe',
+      ids: []
+    })
+    .expect(400, done)
+    .expect({
+      error: 'bad_request'
+    });
+  });
+
+  it('Wrong array content (must be Int)', function(done) {
+    request(app)
+    .get(uri)
+    .send({
+      firstName: 'John',
+      lastName: 'Doe',
+      ids: [
+      'foobar',
+      'test'
+      ]
+    })
+    .expect(400, done)
+    .expect({
+      error: 'ids_must_be_array_of_int'
+    });
+  });
 });
 
 describe('Testing inheritance', function() {

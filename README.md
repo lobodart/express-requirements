@@ -1,5 +1,6 @@
 # express-requirements [![Circle CI](https://circleci.com/gh/lobodart/express-requirements/tree/master.svg?style=svg)](https://circleci.com/gh/lobodart/express-requirements/tree/master)
 [![Build Status](https://travis-ci.org/lobodart/express-requirements.svg?branch=master)](https://travis-ci.org/lobodart/express-requirements)
+[![Coverage Status](https://coveralls.io/repos/github/lobodart/express-requirements/badge.svg?branch=master)](https://coveralls.io/github/lobodart/express-requirements?branch=master)
 
 An [express.js](https://github.com/visionmedia/express) middleware to validate whatever comes into your NodeJS API. It works with [node-validator](https://github.com/chriso/validator.js).
 
@@ -192,7 +193,7 @@ isArray: true
 
 ```javascript
 isArray: {
-    notEmpty: true // You can't add custom errorMessage for this yet
+    notEmpty: { errorMessage: 'error', errorCode: 400 }
     content: { // Check the content of the array
         isAlpha: { errorMessage: 'must_be_alpha' },
         // You can add other validators for the array content
@@ -203,6 +204,8 @@ isArray: {
     errorCode: 400
 }
 ```
+
+> Don't use any other validator than `notEmpty`, it won't work.
 
 ### notEmpty
 ```javascript
