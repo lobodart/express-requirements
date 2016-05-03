@@ -1,4 +1,6 @@
-# express-requirements
+# express-requirements [![Circle CI](https://circleci.com/gh/lobodart/express-requirements/tree/master.svg?style=svg)](https://circleci.com/gh/lobodart/express-requirements/tree/master)
+[![Build Status](https://travis-ci.org/lobodart/express-requirements.svg?branch=master)](https://travis-ci.org/lobodart/express-requirements)
+
 An [express.js](https://github.com/visionmedia/express) middleware to validate whatever comes into your NodeJS API. It works with [node-validator](https://github.com/chriso/validator.js).
 
 ## Installation
