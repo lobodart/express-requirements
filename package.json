@@ -1,0 +1,37 @@
+{
+  "name": "express-requirements",
+  "version": "1.0.0",
+  "description": "An Express middleware to validate the data coming into your NodeJS API.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_ENV=test mocha --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobodart/express-requirements.git"
+  },
+  "keywords": [
+    "express",
+    "requirements",
+    "express-requirements",
+    "middleware"
+  ],
+  "author": "Louis Bodart <lo.bodart3@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lobodart/express-requirements/issues"
+  },
+  "homepage": "https://github.com/lobodart/express-requirements#readme",
+  "devDependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "should": "^8.3.1",
+    "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.11.1",
+    "validator": "5.2.x"
+  }
+}
