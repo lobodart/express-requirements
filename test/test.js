@@ -18,7 +18,7 @@ describe('Testing request parameters', function() {
   it('Param not alpha as it must be - Basic message', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John42'
     })
     .expect(400, done)
@@ -30,7 +30,7 @@ describe('Testing request parameters', function() {
   it('Required param not included - Custom message', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John'
     })
     .expect(400, done)
@@ -42,7 +42,7 @@ describe('Testing request parameters', function() {
   it('Param not alpha as it must be - Custom message', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe42'
     })
@@ -55,7 +55,7 @@ describe('Testing request parameters', function() {
   it('Testing _parameter keyword (fail)', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       data: 'FooBar'
@@ -69,7 +69,7 @@ describe('Testing request parameters', function() {
   it('Testing _parameter keyword (success)', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       data: '042.jd'
@@ -83,7 +83,7 @@ describe('Testing request parameters', function() {
   it('Testing _parameter keyword with integer (fail)', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       license: 42
@@ -97,7 +97,7 @@ describe('Testing request parameters', function() {
   it('Testing _parameter keyword with integer (success)', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       license: 41
@@ -113,7 +113,7 @@ describe('Testing scopes', function() {
   it('Testing headers scope', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       'x-auth': '42'
@@ -127,7 +127,7 @@ describe('Testing scopes', function() {
   it('Testing headers scope validator error', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe'
     })
@@ -141,7 +141,7 @@ describe('Testing scopes', function() {
   it('Testing headers scope validator success', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe'
     })
@@ -155,7 +155,7 @@ describe('Testing scopes', function() {
   it('Testing params scope validator error', function(done) {
     request(app)
     .get('/test/foo')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe'
     })
@@ -168,7 +168,7 @@ describe('Testing scopes', function() {
   it('Testing params scope validator success', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe'
     })
@@ -183,7 +183,7 @@ describe('Testing personal validators', function() {
   it('Testing notEmpty feature - Basic message', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: ''
     })
     .expect(400, done)
@@ -195,7 +195,7 @@ describe('Testing personal validators', function() {
   it('Testing notEmpty feature - Custom message', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: ''
     })
@@ -208,7 +208,7 @@ describe('Testing personal validators', function() {
   it('Param is not array as it must be', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       ids: 'foobar'
@@ -219,24 +219,10 @@ describe('Testing personal validators', function() {
     });
   });
 
-  it('Testing notEmpty feature on array', function(done) {
-    request(app)
-    .get(uri)
-    .send({
-      firstName: 'John',
-      lastName: 'Doe',
-      ids: []
-    })
-    .expect(400, done)
-    .expect({
-      error: 'bad_request'
-    });
-  });
-
   it('Wrong array content (must be Int)', function(done) {
     request(app)
     .get(uri)
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       ids: [
@@ -264,7 +250,7 @@ describe('Testing inheritance', function() {
   it('Required param included but empty', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: ''
     })
     .expect(400, done)
@@ -276,7 +262,7 @@ describe('Testing inheritance', function() {
   it('Param not alpha as it must be', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John42'
     })
     .expect(400, done)
@@ -288,7 +274,7 @@ describe('Testing inheritance', function() {
   it('Param not alpha as it must be (second param)', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe42'
     })
@@ -301,7 +287,7 @@ describe('Testing inheritance', function() {
   it('Everything should be ok', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe'
     })
@@ -314,7 +300,7 @@ describe('Testing inheritance', function() {
   it('Preparing override test', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       age: 24
@@ -328,7 +314,7 @@ describe('Testing inheritance', function() {
   it('Testing override', function(done) {
     request(app)
     .get('/test/42')
-    .send({
+    .query({
       firstName: 'John',
       lastName: 'Doe',
       age: 'foobar'
