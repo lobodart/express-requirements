@@ -65,10 +65,13 @@ module.exports = {
                 }
             }
         },
-        
-        firstName: {
-            _inheritFrom: 'simple_get'
+
+        _query: {
+            firstName: {
+                _inheritFrom: 'simple_get'
+            }
         },
+
         lastName: {
             required: true,
             _inheritFrom: 'simple_get'
