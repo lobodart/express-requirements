@@ -1,6 +1,6 @@
 {
   "name": "express-requirements",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An Express middleware to validate the data coming into your NodeJS API.",
   "main": "index.js",
   "engines" : {
